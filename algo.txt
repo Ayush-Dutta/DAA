@@ -1,0 +1,143 @@
+#binary search
+
+1.Start with a sorted array of n elements and the element you're searching for, x.
+2.Set the leftmost index to 0 and the rightmost index to n-1.
+3.While the leftmost index is less than or equal to the rightmost index:
+	* Calculate the middle index by adding the leftmost and 	rightmost indices together and dividing by 2:
+	mid = (left + right) // 2
+	* If the element at the middle index is equal to x, return 	the index.
+	* If the element at the middle index is greater than x, set 	the rightmost index to mid-1.
+	* If the element at the middle index is less than x, set the 	leftmost index to mid+1.
+4.If x is not found in the array, return -1.
+
+#Merge Sort
+1.If the array has only one element or is empty, return the array as it is already sorted.
+2.Divide the array into two halves, the left and the right, such that each half contains roughly half of the elements in the original array.
+3.Recursively sort the left half by calling merge sort on it.
+4.Recursively sort the right half by calling merge sort on it.
+5.Merge the two sorted halves by creating a new array and comparing the first elements of each half. Append the smaller element to the new array and move the corresponding pointer to the next element in that half. Continue this process until one half is completely merged into the new array. Then, append the remaining elements from the other half to the new array.
+6.Return the new array as the sorted result.
+
+#Quick Sort
+1.If the array has only one element or is empty, return the array as it is already sorted.
+2.Choose a pivot element from the array. This can be any element in the array, but usually the first or last element is chosen.
+3.Partition the array such that all elements less than the pivot are placed to the left of the pivot, and all elements greater than the pivot are placed to the right of the pivot. This can be done in linear time using two pointers that move towards each other from the left and right ends of the array.
+4.Recursively sort the left partition by calling Quick Sort on it.
+5.Recursively sort the right partition by calling Quick Sort on it.
+6.Concatenate the sorted left partition, the pivot element, and the sorted right partition.
+
+
+#Maximum and Minimum element from a array
+
+1.If the array has only one element, return that element as both the maximum and minimum.
+2.If the array has two elements, compare them and return the smaller one as the minimum and the larger one as the maximum.
+3.If the array has more than two elements, divide it into two equal-sized subarrays.
+4.Recursively find the minimum and maximum of each subarray using the same algorithm.
+5.Compare the minimum and maximum of each subarray to find the overall minimum and maximum of the original array.
+
+
+#BFS
+
+1.Start with a source vertex, mark it as visited and add it to a queue.
+2.While the queue is not empty:
+	* Dequeue the first vertex from the queue.
+	* For each unvisited neighbor of the dequeued vertex:
+	* Mark it as visited and add it to the queue.
+3.Repeat step 2 until the queue is empty.
+
+BFS explores all the vertices at distance d from the source vertex before exploring any vertex at distance d+1. This is why BFS is sometimes referred to as "level-order traversal".
+
+
+#DFS
+
+1.Start with a source vertex, mark it as visited and explore it.
+2.For each unvisited neighbor of the source vertex:
+	* Mark it as visited and explore it recursively.
+3.Repeat step 2 for each unvisited neighbor of the visited vertices until all vertices are visited.
+
+DFS explores as far as possible along each branch before backtracking. This is why DFS is sometimes referred to as "depth-first traversal".
+
+
+#Knapsack
+
+he Knapsack Problem is a combinatorial optimization problem in which given a set of items each with a weight and value, the goal is to find the subset of items that maximizes the total value while keeping the total weight within a limit (the capacity of a knapsack).
+
+The problem can be formally stated as follows:
+
+Given n items with weights w_1, w_2, ..., w_n and values v_1, v_2, ..., v_n, and a knapsack of capacity W, find the subset of items that maximizes the sum of values subject to the constraint that the sum of weights is less than or equal to W.
+
+There are two main versions of the problem: 0/1 Knapsack Problem and the Fractional Knapsack Problem.
+
+The 0/1 Knapsack Problem: In this version, each item can either be included or excluded from the knapsack, i.e., we cannot include a fraction of an item. This makes the problem more challenging as we need to find the optimal subset of items that maximizes the total value while keeping the total weight within the capacity limit.
+
+The Fractional Knapsack Problem: In this version, we can include fractions of items in the knapsack. This makes the problem simpler to solve as we can simply sort the items by their value-to-weight ratio and start adding the items in order until we reach the capacity limit.
+
+Both versions of the problem can be solved using dynamic programming or greedy algorithms, but the approach differs depending on the version of the problem.
+
+
+
+#Prim's Algorithm
+
+1.Start with any vertex (source) and mark it as visited.
+2.Find the minimum-weight edge that connects the visited vertices to an unvisited vertex.
+3.Add the newly visited vertex to the MST and mark it as visited.
+4.Repeat step 2 and 3 until all vertices are visited.
+
+#kruskal
+
+1.Sort all the edges in the graph by their weight in increasing order.
+2.Initialize the MST to be an empty set.
+3.For each edge (u, v) in the sorted edge list:
+	* If adding the edge (u, v) to the MST does not create a 	cycle, add it to the MST.
+4.Repeat step 3 until all vertices are connected in the MST.
+
+
+
+#Dijkstra algorithm
+
+
+1.Assign a tentative distance value to every vertex: set it to zero for the source vertex and to infinity for all other vertices.
+2.Mark all vertices as unvisited and create a set of unvisited vertices.
+3.While there are unvisited vertices:
+	* Choose the unvisited vertex with the smallest tentative 	distance and mark it as visited.
+	* For each neighbor of the current vertex that is still 	unvisited, calculate its tentative distance by adding the 	weight of the edge to the current vertex's tentative 	distance. If this tentative distance is less than the 	neighbor's current tentative distance, update it.
+4.Repeat step 3 until all vertices have been visited.
+
+
+#matmul
+
+Here's an example of how to solve this problem using dynamic programming:
+
+1.Initialize a 2D array M of size n x n, where M[i][j] represents the minimum number of scalar multiplications needed to multiply the matrices Ai x Ai+1 x ... x Aj.
+
+2.For i = 1 to n, set M[i][i] = 0, since a single matrix requires no multiplication.
+
+3.For L = 2 to n, do the following:
+
+a. For i = 1 to n-L+1, and j = i+L-1, do the following:
+
+	Initialize M[i][j] to a large number.
+	For k = i to j-1, calculate the number of scalar 	multiplications needed to multiply the matrices Ai x Ai+1 	x ... x Ak and Ak+1 x ... x Aj, and add the result to M[i][k] 	+ M[k+1][j].
+	If the result is less than M[i][j], update M[i][j] to the new 	minimum.
+4.The minimum number of scalar multiplications needed to multiply the entire chain of matrices is stored in M[1][n].
+
+The time complexity of this algorithm is O(n^3), where n is the number of matrices in the chain.
+
+
+
+#Floyd-Warshall
+
+
+1.Initialize a 2D distance matrix D of size n x n, where D[i][j] represents the shortest distance between vertex i and vertex j.
+2.For each edge (u, v) in the graph, set D[u][v] to the weight of the edge. If there is no edge between u and v, set D[u][v] to infinity.
+3.For k = 1 to n, do the following:
+	* For i = 1 to n, and j = 1 to n, update D[i][j] as min(D[i]	[j], D[i][k] + D[k][j]).
+4.The final matrix D contains the shortest distance between all pairs of vertices.
+
+
+#travelling Salesman
+
+1.Start at any city.
+2.Find the nearest unvisited city and add it to the tour.
+3.Repeat step 2 until all cities have been visited.
+4.Add the edge back to the starting city to complete the tour.
